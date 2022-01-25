@@ -17,4 +17,4 @@ python3 estimator.py
 ___
 
 Please see the following blog post for more details about this code:
-- Head Pose Estimation using Mediapipe
+- [Head Pose Estimation using Mediapipe](https://vrgl.ir/gkYkA)

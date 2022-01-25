@@ -75,11 +75,13 @@ while cap.isOpened():
             # Use Rodrigues function to convert rotation vector to matrix
             rotation_matrix, jacobian = cv2.Rodrigues(rotation_vec)
 
-            yaw, pitch, roll = rotation_matrix_to_angles(rotation_matrix)
+            result = rotation_matrix_to_angles(rotation_matrix)
+            for i, info in enumerate(zip(('pitch', 'yaw', 'roll'), result)):
+                k, v = info
+                text = f'{k}: {int(v)}'
+                cv2.putText(image, text, (20, i*30 + 20),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (200, 0, 200), 2)
 
-            text = f'{int(pitch)} | {int(yaw)} | {int(roll)}'
-            cv2.putText(image, text, (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 1,
-                        (0, 0, 255), 2)
 
     cv2.imshow('Head Pose Angles', image)
 
@@ -87,3 +89,4 @@ while cap.isOpened():
         break
 
 cap.release()
+
